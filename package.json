@@ -1,0 +1,42 @@
+{
+  "name": "@relentlessbuild/decs-mcp",
+  "version": "0.2.0",
+  "description": "Relentless DECS MCP server for Codex, Claude Desktop, and other MCP clients.",
+  "type": "module",
+  "bin": {
+    "relentless-decs-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "codex",
+    "docs",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist coverage",
+    "dev": "tsx src/index.ts",
+    "setup:codex": "tsx src/index.ts setup codex",
+    "setup:claude-desktop": "tsx src/index.ts setup claude-desktop",
+    "doctor": "tsx src/index.ts doctor",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

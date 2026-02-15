@@ -1,0 +1,10 @@
+# ~/.codex/config.toml
+
+[mcp_servers.relentless_decs]
+command = "npx"
+args = ["-y", "@relentlessbuild/decs-mcp", "serve"]
+
+[mcp_servers.relentless_decs.env]
+RELENTLESS_API_KEY = "rlnt_your_api_key"
+RELENTLESS_URL = "https://relentless.build"
+RELENTLESS_BUILDSPACE_ID = "your-buildspace-id"

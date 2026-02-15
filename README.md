@@ -1,74 +1,72 @@
-# DECS for Relentless
+# Relentless DECS MCP
 
-Decision-Embedded Context System — Claude Code hooks for architectural decision tracking with [Relentless](https://relentless.build).
+Relentless DECS gives AI coding sessions architectural memory.
 
-## What It Does
+It stores decisions in Relentless and lets Codex or Claude Desktop read/write them through MCP tools.
 
-Claude automatically records architectural decisions at the end of each coding session and recalls them at the start of the next. Decisions are stored as Decision nodes in Relentless, organized in a Decisions space inside each project node.
+## Quick Start (Codex)
 
-## Prerequisites
-
-- A [Relentless](https://relentless.build) account
-- [Claude Code](https://claude.ai/code) CLI
-- `jq` and `curl` installed
-
-## Setup
-
-### 1. Clone and install
+If you are already in the repo you want to track:
 
 ```bash
-git clone https://github.com/RelentlessToph/relentless-decs.git
-cd relentless-decs
-./install.sh
+npx @relentlessbuild/decs-mcp setup codex
 ```
 
-This copies hooks to `~/.claude/hooks/` and the init skill to `~/.claude/skills/`.
+If you are not in that repo:
 
-### 2. Configure credentials
-
-Generate an API key from your Relentless account settings. Create `~/.claude/decs-config.json`:
-
-```json
-{
-  "relentlessApiKey": "rlnt_your_key_here",
-  "relentlessUrl": "https://relentless.build",
-  "buildspaceId": "your-buildspace-id"
-}
+```bash
+npx @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
 ```
 
-Your Buildspace ID is the UUID in the URL bar when logged in (e.g. `/workspace/019c2f...`).
+Then initialize DECS for that repo:
 
-### 3. Enable in a repo
-
-In Claude Code, run:
-
-```
-/init-decs-project <project-node-id> [project-name]
+```bash
+npx @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo /path/to/your/repo
 ```
 
-This creates a "project-name - Decisions" space inside your Relentless project node and writes `.decs.json` to the repo root. Get the project node ID by clicking its kind tag (e.g. `PROJECT`) in Relentless.
+What setup does:
 
-## How It Works
+1. Prompts for Relentless API key + buildspace id.
+2. Writes `~/.relentless/decs-config.json`.
+3. Adds MCP server config to `~/.codex/config.toml`.
+4. Installs Codex prompts in `~/.codex/prompts`.
+5. Merges DECS guidance into repo `AGENTS.md`.
 
-Three hooks run automatically:
+## Quick Start (Claude Desktop MCP)
 
-- **SessionStart** (`get-decisions.sh`): Fetches decisions from Relentless, injects as context
-- **UserPromptSubmit** (`decs-context.sh`): Re-injects decisions when "decision" or "decs" is mentioned (5-min cache)
-- **Stop** (`decs-stop.sh`): Prompts Claude to document any new decisions before ending
+```bash
+npx @relentlessbuild/decs-mcp setup claude-desktop
+```
 
-## Decision Format
+Then fully restart Claude Desktop.
 
-Each Decision node has four fields:
+## Local Clone Setup (No npm Publish Needed)
 
-- **What**: Clear statement of the decision
-- **Why**: Reasoning and alternatives considered
-- **Purpose**: What outcome this serves
-- **Constraints**: What this enables or limits for future work
+```bash
+git clone https://github.com/RelentlessToph/relentless-mcp.git
+cd relentless-mcp
+./install-codex.sh /path/to/your/repo
+./install-claude-desktop-mcp.sh
+```
 
-## Key Decisions
+## Main Commands
 
-Mark foundational choices as "Key Decision" — they are always injected into every session. Recent non-key decisions are limited to the 10 most recent.
+- `npx @relentlessbuild/decs-mcp setup codex [--repo <path>]`
+- `npx @relentlessbuild/decs-mcp setup claude-desktop`
+- `npx @relentlessbuild/decs-mcp init <project-node-id> [project-name] [--repo <path>]`
+- `npx @relentlessbuild/decs-mcp doctor [--repo <path>]`
 
-## License
+## Docs
 
-MIT
+- `docs/codex-quickstart.md`
+- `docs/mcp-clients.md`
+- `docs/legacy-claude-code-hooks.md`
+
+## Development
+
+```bash
+npm install
+npm run typecheck
+npm test
+npm run build
+```

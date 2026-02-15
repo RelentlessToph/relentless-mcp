@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "relentless-decs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@relentlessbuild/decs-mcp",
+        "serve"
+      ],
+      "env": {
+        "RELENTLESS_API_KEY": "rlnt_your_api_key",
+        "RELENTLESS_URL": "https://relentless.build",
+        "RELENTLESS_BUILDSPACE_ID": "your-buildspace-id"
+      }
+    }
+  }
+}
