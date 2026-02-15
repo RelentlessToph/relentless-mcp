@@ -33,7 +33,7 @@ export async function runSetupCodex(options: SetupCodexOptions): Promise<void> {
   }
 
   let command = "npx";
-  let args = ["-y", "@relentless/decs-mcp", "serve"];
+  let args = ["-y", "@relentlessbuild/decs-mcp", "serve"];
 
   if (options.useLocalServer) {
     const localServerPath = path.resolve(process.cwd(), "dist", "index.js");

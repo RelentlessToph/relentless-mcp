@@ -35,7 +35,7 @@ export async function runSetupClaudeDesktop(
   }
 
   let command = "npx";
-  let args = ["-y", "@relentless/decs-mcp", "serve"];
+  let args = ["-y", "@relentlessbuild/decs-mcp", "serve"];
   if (options.useLocalServer) {
     const localServerPath = path.resolve(process.cwd(), "dist", "index.js");
     if (!fs.existsSync(localServerPath)) {

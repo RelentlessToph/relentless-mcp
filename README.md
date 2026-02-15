@@ -4,6 +4,8 @@ Relentless DECS gives AI coding sessions architectural memory.
 
 It stores decisions in Relentless and lets Codex or Claude Desktop read/write them through MCP tools.
 
+All commands below use `npx` so no global install is required.
+
 ## Quick Start (Codex)
 
 If you are already in the repo you want to track:
@@ -44,12 +46,32 @@ What setup does:
 npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
+Setup only prompts for missing credential fields. If your API key is already saved, it may only ask for URL/buildspace.
+
 Then fully restart Claude Desktop.
 
-If you are in WSL, use:
+On WSL, this command now auto-targets the Windows Claude Desktop config path.
+It writes to `%APPDATA%\Claude\claude_desktop_config.json` (Windows), which maps to:
+`/mnt/c/Users/<you>/AppData/Roaming/Claude/claude_desktop_config.json` in WSL.
+
+WSL explicit flag (optional):
 
 ```bash
 npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
+```
+
+WSL verification:
+
+```bash
+APPDATA_WIN=$(cmd.exe /c echo %APPDATA% | tr -d '\r')
+cat "$(wslpath -u "$APPDATA_WIN")/Claude/claude_desktop_config.json"
+```
+
+If APPDATA detection fails in WSL, run:
+
+```bash
+APPDATA_WIN=$(cmd.exe /c echo %APPDATA% | tr -d '\r')
+APPDATA="$(wslpath -u "$APPDATA_WIN")" npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
 ```
 
 ## Local Clone Setup (No npm Publish Needed)

@@ -87,10 +87,28 @@ Add:
 npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
-For WSL:
+Setup prompts only for missing credential fields.
+
+On WSL, this command auto-targets Windows `%APPDATA%\Claude\claude_desktop_config.json`.
+
+WSL explicit flag (optional):
 
 ```bash
 npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
+```
+
+WSL verification:
+
+```bash
+APPDATA_WIN=$(cmd.exe /c echo %APPDATA% | tr -d '\r')
+cat "$(wslpath -u "$APPDATA_WIN")/Claude/claude_desktop_config.json"
+```
+
+If APPDATA detection fails in WSL:
+
+```bash
+APPDATA_WIN=$(cmd.exe /c echo %APPDATA% | tr -d '\r')
+APPDATA="$(wslpath -u "$APPDATA_WIN")" npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
 ```
 
 Local clone alternative:
