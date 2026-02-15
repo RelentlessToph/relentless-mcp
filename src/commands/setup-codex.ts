@@ -102,7 +102,7 @@ export async function runSetupCodex(options: SetupCodexOptions): Promise<void> {
   logStep("Next steps:");
   logStep("1) Restart Codex.");
   logStep(
-    "2) In your repo, run: npx @relentless/decs-mcp init <project-node-id> [project-name] --repo ."
+    "2) In your repo, run: npx -y @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo ."
   );
   logStep("3) Optional in-chat command: /prompts:decs-init <project-node-id> [project-name]");
 }

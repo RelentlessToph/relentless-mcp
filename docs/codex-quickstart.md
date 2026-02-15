@@ -7,7 +7,7 @@ This is the simplest path for Codex users.
 Run:
 
 ```bash
-npx @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
 ```
 
 The setup command will:
@@ -31,7 +31,7 @@ The local script writes Codex MCP config pointing to your local `dist/index.js`.
 After setup, in Codex run:
 
 ```text
-npx @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo /path/to/your/repo
 ```
 
 This creates a decisions collection in Relentless and writes `.decs.json` in your repo.
@@ -53,7 +53,7 @@ Optional in-chat prompt command:
 Run:
 
 ```bash
-npx @relentlessbuild/decs-mcp doctor --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp doctor --repo /path/to/your/repo
 ```
 
 It checks credentials, Codex MCP wiring, and `.decs.json`.

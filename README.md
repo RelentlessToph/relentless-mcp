@@ -9,19 +9,19 @@ It stores decisions in Relentless and lets Codex or Claude Desktop read/write th
 If you are already in the repo you want to track:
 
 ```bash
-npx @relentlessbuild/decs-mcp setup codex
+npx -y @relentlessbuild/decs-mcp setup codex
 ```
 
 If you are not in that repo:
 
 ```bash
-npx @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
 ```
 
 Then initialize DECS for that repo:
 
 ```bash
-npx @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp init <project-node-id> [project-name] --repo /path/to/your/repo
 ```
 
 What setup does:
@@ -35,7 +35,7 @@ What setup does:
 ## Quick Start (Claude Desktop MCP)
 
 ```bash
-npx @relentlessbuild/decs-mcp setup claude-desktop
+npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
 Then fully restart Claude Desktop.
@@ -51,10 +51,10 @@ cd relentless-mcp
 
 ## Main Commands
 
-- `npx @relentlessbuild/decs-mcp setup codex [--repo <path>]`
-- `npx @relentlessbuild/decs-mcp setup claude-desktop`
-- `npx @relentlessbuild/decs-mcp init <project-node-id> [project-name] [--repo <path>]`
-- `npx @relentlessbuild/decs-mcp doctor [--repo <path>]`
+- `npx -y @relentlessbuild/decs-mcp setup codex [--repo <path>]`
+- `npx -y @relentlessbuild/decs-mcp setup claude-desktop`
+- `npx -y @relentlessbuild/decs-mcp init <project-node-id> [project-name] [--repo <path>]`
+- `npx -y @relentlessbuild/decs-mcp doctor [--repo <path>]`
 
 ## Docs
 

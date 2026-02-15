@@ -28,7 +28,7 @@ Format:
 Recommended:
 
 ```bash
-npx @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
+npx -y @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
 ```
 
 Local clone alternative:
@@ -84,7 +84,7 @@ Add:
 ### Optional automation
 
 ```bash
-npx @relentlessbuild/decs-mcp setup claude-desktop
+npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
 Local clone alternative:
@@ -114,7 +114,7 @@ The command performs idempotent merge and writes a `.bak` backup before changes.
 ## Troubleshooting
 
 - `doctor` command:
-  - `npx @relentlessbuild/decs-mcp doctor --repo /path/to/your/repo`
+  - `npx -y @relentlessbuild/decs-mcp doctor --repo /path/to/your/repo`
 - If Codex/Claude does not show tools:
   - restart client fully
   - confirm config path and JSON/TOML validity
