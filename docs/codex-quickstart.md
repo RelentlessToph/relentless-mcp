@@ -10,6 +10,12 @@ Run:
 npx -y @relentlessbuild/decs-mcp setup codex --repo /path/to/your/repo
 ```
 
+If you are testing from inside the `relentless-mcp` package source repo itself, use:
+
+```bash
+node dist/index.js setup codex --repo /path/to/your/repo
+```
+
 The setup command will:
 
 1. Prompt for your Relentless credentials (API key, URL, buildspace id).

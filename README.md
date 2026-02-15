@@ -12,6 +12,12 @@ If you are already in the repo you want to track:
 npx -y @relentlessbuild/decs-mcp setup codex
 ```
 
+Note for maintainers: if you are testing from inside the `relentless-mcp` source repo itself, use:
+
+```bash
+node dist/index.js setup codex --repo .
+```
+
 If you are not in that repo:
 
 ```bash
@@ -39,6 +45,12 @@ npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
 Then fully restart Claude Desktop.
+
+If you are in WSL, use:
+
+```bash
+npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
+```
 
 ## Local Clone Setup (No npm Publish Needed)
 

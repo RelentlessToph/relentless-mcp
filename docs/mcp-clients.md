@@ -87,6 +87,12 @@ Add:
 npx -y @relentlessbuild/decs-mcp setup claude-desktop
 ```
 
+For WSL:
+
+```bash
+npx -y @relentlessbuild/decs-mcp setup claude-desktop --platform windows
+```
+
 Local clone alternative:
 
 ```bash
@@ -115,6 +121,9 @@ The command performs idempotent merge and writes a `.bak` backup before changes.
 
 - `doctor` command:
   - `npx -y @relentlessbuild/decs-mcp doctor --repo /path/to/your/repo`
+- If you are inside the `relentless-mcp` package source repo and `npx ...` says command not found:
+  - use `node dist/index.js <command>` for local maintainer testing
+  - or run the `npx` command from another directory
 - If Codex/Claude does not show tools:
   - restart client fully
   - confirm config path and JSON/TOML validity
