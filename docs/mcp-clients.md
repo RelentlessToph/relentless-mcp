@@ -146,3 +146,6 @@ The command performs idempotent merge and writes a `.bak` backup before changes.
   - restart client fully
   - confirm config path and JSON/TOML validity
   - verify `npx -y @relentlessbuild/decs-mcp serve` runs
+- If `decs_list` returns `total: 0` for a DECS node that has decisions:
+  - ensure you are on `@relentlessbuild/decs-mcp@0.2.3` or newer
+  - rerun setup so the client uses the latest package version

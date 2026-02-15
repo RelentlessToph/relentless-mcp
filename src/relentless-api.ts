@@ -2,6 +2,12 @@ import { DecsError } from "./errors.js";
 import type { DecisionContent, RelentlessCredentials, RelentlessNode } from "./types.js";
 
 type HttpMethod = "GET" | "POST" | "PATCH";
+type NodesListPayload =
+  | RelentlessNode[]
+  | {
+      nodes?: RelentlessNode[];
+      nextCursor?: string | null;
+    };
 
 interface RequestOptions {
   query?: Record<string, string | number | boolean | undefined>;
@@ -37,6 +43,24 @@ function sleep(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, milliseconds);
   });
+}
+
+function parseNodesFromPayload(payload: NodesListPayload): {
+  nodes: RelentlessNode[];
+  nextCursor: string | null;
+} {
+  if (Array.isArray(payload)) {
+    return {
+      nodes: payload,
+      nextCursor: null
+    };
+  }
+
+  const nodes = Array.isArray(payload.nodes) ? payload.nodes : [];
+  return {
+    nodes,
+    nextCursor: typeof payload.nextCursor === "string" ? payload.nextCursor : null
+  };
 }
 
 export class RelentlessApiClient {
@@ -114,13 +138,28 @@ export class RelentlessApiClient {
   }
 
   async listDecisions(spaceId: string): Promise<RelentlessNode[]> {
-    const result = await this.request<RelentlessNode[]>("GET", "/api/nodes", {
-      query: {
-        parentId: spaceId,
-        kind: "decision"
+    const collected: RelentlessNode[] = [];
+    let cursor: string | null = null;
+    const maxPages = 50;
+
+    for (let page = 0; page < maxPages; page += 1) {
+      const result = await this.request<NodesListPayload>("GET", "/api/nodes", {
+        query: {
+          parentId: spaceId,
+          kind: "decision",
+          cursor: cursor ?? undefined
+        }
+      });
+      const parsed = parseNodesFromPayload(result);
+      collected.push(...parsed.nodes);
+
+      if (!parsed.nextCursor) {
+        break;
       }
-    });
-    return Array.isArray(result) ? result : [];
+      cursor = parsed.nextCursor;
+    }
+
+    return collected;
   }
 
   async createNode(payload: {

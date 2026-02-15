@@ -1,6 +1,6 @@
 {
   "name": "@relentlessbuild/decs-mcp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Relentless DECS MCP server for Codex, Claude Desktop, and other MCP clients.",
   "type": "module",
   "bin": {

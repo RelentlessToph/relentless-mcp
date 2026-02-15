@@ -90,6 +90,10 @@ cd relentless-mcp
 - `npx -y @relentlessbuild/decs-mcp init <project-node-id> [project-name] [--repo <path>]`
 - `npx -y @relentlessbuild/decs-mcp doctor [--repo <path>]`
 
+## Troubleshooting
+
+- If `decs_list` shows `total: 0` for a DECS node that definitely has decisions, upgrade to `@relentlessbuild/decs-mcp@0.2.3` or newer and rerun setup.
+
 ## Docs
 
 - `docs/codex-quickstart.md`
